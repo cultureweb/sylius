@@ -7,7 +7,7 @@
 /etc/build/*
 !/etc/build/.gitignore
 
-_docker-data_mysql/*
+_docker-data-mysql/
 .idea/*
 acme/*
 .github/*
