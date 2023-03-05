@@ -22,7 +22,16 @@ We're using full-stack Behavior-Driven-Development, with [phpspec](http://phpspe
 
 Documentation is available at [docs.sylius.com](http://docs.sylius.com).
 
-## Installation
+## Prepare test application with fixtures
+
+```
+php bin/console doctrine:database:create -vvv
+php bin/console doctrine:migrations:migrate -n -vvv
+yarn install
+php bin/console assets:install public -vvv
+php bin/console cache:warmup -vvv
+php bin/console sylius:fixtures:load -n
+```
 
 ### Traditional
 ```bash
