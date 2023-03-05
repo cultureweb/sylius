@@ -31,6 +31,13 @@ yarn install
 php bin/console assets:install public -vvv
 php bin/console cache:warmup -vvv
 php bin/console sylius:fixtures:load -n
+
+```
+
+### Create Your Own Controller
+
+```
+composer require symfony/maker-bundle --dev
 ```
 
 ### Traditional
