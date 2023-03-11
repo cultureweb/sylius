@@ -16,33 +16,35 @@
                     <div class="container">
                         <div class="row my-4">
 
-                        {% for childTaxon in taxon.enabledChildren %}
-                            {{ macros.item(childTaxon) }}
-                        {% endfor %}
+                            {% for childTaxon in taxon.enabledChildren %}
+                                {{ macros.item(childTaxon) }}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </li>
         </ul>
     {% else %}
-<div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
-    <div class="list-group list-group-flush">
-        <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" class="list-group-item list-group-item-action" {{ sylius_test_html_attribute('menu-item') }}>
-            {{ taxon.name }}
-        </a>
-    </div>
-</div>
+        <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+            <div class="list-group list-group-flush">
+                <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}"
+                   class="list-group-item list-group-item-action" {{ sylius_test_html_attribute('menu-item') }}>
+                    {{ taxon.name }}
+                </a>
+            </div>
+        </div>
     {% endif %}
 {% endmacro %}
 
 {% import _self as macros %}
 {% if taxons|length > 0 %}
     {# <div class="ui large stackable menu" {{ sylius_test_html_attribute('menu') }}> #}
-{#    <div class="stackable" >#}
+    {# <div class="stackable" > #}
     <div {{ sylius_test_html_attribute('menu') }}>
 
         {# {% include "@SyliusAdmin/Layout/_logo.html.twig" %} #}
         <!-- start navigation -->
-{#        <nav class="navbar navbar-expand-lg navbar-light bg-light">#}
+        {# <nav class="navbar navbar-expand-lg navbar-light bg-light"> #}
         <nav class="navbar navbar-expand-lg navbar-light">
             <!-- Container wrapper -->
             <div class="container-fluid">
