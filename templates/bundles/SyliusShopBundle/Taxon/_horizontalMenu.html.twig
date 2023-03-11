@@ -1,0 +1,66 @@
+{% macro item(taxon) %}
+
+    {% import _self as macros %}
+    {% if taxon.enabledChildren|length > 0 %}
+        <ul class="navbar-nav me-auto ps-lg-0" style="padding-left: 0.15rem">
+            <!-- Navbar dropdown -->
+            <li class="nav-item dropdown dropdown-hover position-static">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-mdb-toggle="dropdown" aria-expanded="false">
+                    {{ taxon.name }}
+                </a>
+                <!-- Dropdown menu -->
+                <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="border-top-left-radius: 0;
+                            border-top-right-radius: 0;
+                          ">
+                    <div class="container">
+                        <div class="row my-4">
+
+                        {% for childTaxon in taxon.enabledChildren %}
+                            {{ macros.item(childTaxon) }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </li>
+        </ul>
+    {% else %}
+<div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+    <div class="list-group list-group-flush">
+        <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" class="list-group-item list-group-item-action" {{ sylius_test_html_attribute('menu-item') }}>
+            {{ taxon.name }}
+        </a>
+    </div>
+</div>
+    {% endif %}
+{% endmacro %}
+
+{% import _self as macros %}
+{% if taxons|length > 0 %}
+    {# <div class="ui large stackable menu" {{ sylius_test_html_attribute('menu') }}> #}
+{#    <div class="stackable" >#}
+    <div {{ sylius_test_html_attribute('menu') }}>
+
+        {# {% include "@SyliusAdmin/Layout/_logo.html.twig" %} #}
+        <!-- start navigation -->
+{#        <nav class="navbar navbar-expand-lg navbar-light bg-light">#}
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <!-- Container wrapper -->
+            <div class="container-fluid">
+                <!-- Toggle button -->
+                <button class="navbar-toggler px-0" type="button" data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarExampleOnHover" aria-controls="navbarExampleOnHover"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarExampleOnHover">
+                    {% for taxon in taxons %}
+                        {{ macros.item(taxon) }}
+                    {% endfor %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- end navigation -->
+{% endif %}

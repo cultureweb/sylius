@@ -1,0 +1,16 @@
+/** cultureweb by Cédric Milius- v1.0*/
+
+/** Bootstrap dropdown menu  **/
+.dropdown-hover:hover>.dropdown-menu {
+    display: inline-block;
+}
+
+.dropdown-hover>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+.dropdown-menu {
+    box-shadow: 0 0 40px 0 rgba(28, 30, 35, 0.1);
+    border: transparent!important;
+}
+/** End Bootstrap dropdown menu  **/
